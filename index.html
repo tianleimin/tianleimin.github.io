@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+body {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
+}
+a {text-decoration : none; color : #003399;}
+a:hover {text-decoration:underline; color: #CC0000; }
+</style>
+
+<script type='text/javascript'>
+window.onload = function() {
+	document.getElementById('trick').innerHTML = decode('111-203-214-103-64-224-105-44-101-111-166-100-100-202-223-225-223-44-166-64-212-223-64-201');
+}
+function random(s, N) {
+    var x = Math.sin(s) * 10000;
+    var r = x - Math.floor(x);
+	return Math.floor(r * N);
+}
+function swap(arr, i, j) {
+	if(i == j) return;
+	arr[i] ^= arr[j];
+	arr[j] ^= arr[i];
+	arr[i] ^= arr[j];
+}
+function getRndArr(N, seed) {
+	var arr = new Array(N);
+	var i, s;
+	for(i = 0; i < N; i ++)
+		arr[i] = i;
+	for(s = seed, i = 0; i < N-1; i ++, s += 3)
+	{
+		L = N - i;
+		ind = random(s, L);
+		swap(arr, ind, L - 1);
+	}
+	return arr;
+}
+function trans(text) {
+	arr = getRndArr(text.length, 7);
+	var outtxt = '';
+	for(var i = 0; i < text.length; i ++)
+		outtxt += text[arr[i]];
+	return outtxt;
+}
+function transback(text) {
+	arr = getRndArr(text.length, 7)
+	var out = new Array(text.length);
+	for(var i = 0; i < text.length; i ++)
+		out[arr[i]] = text[i];
+	return out.join('');
+}
+function num2strbase(num, base) {
+	if(num == 0) return '0';
+	var digits = new Array();
+	for( ; num > 0; num = parseInt(num / base))
+		digits.push(num % base);
+	digits.reverse();
+	return digits.join('');
+}
+function str2numbase(str, base) {
+	var sum = 0;
+	for(var i = 0; i < str.length; i ++)
+		sum = sum * base + (str[i].charCodeAt() - '0'.charCodeAt());
+	return sum;
+}
+function alpha2code(str, base) {
+	var codes = new Array();
+	for(var i = 0; i < str.length; i ++)
+		codes.push(num2strbase(str[i].charCodeAt(), base));
+	return codes.join('-');
+}
+function code2alpha(code, base) {
+	var codes = code.split('-');
+	str = '';
+	for(var i = 0; i < codes.length; i ++)
+		str += String.fromCharCode(str2numbase(codes[i], base));
+	return str;
+}
+function decode(code) {
+	alpha = code2alpha(code, 7);
+	return transback(alpha);
+}
+function encode(str) {
+	tmp = trans(str);
+	return alpha2code(tmp, 7);
+}
+function copy(dest, source) {
+  if(dest.source == source) {
+    dest.innerHTML = "";
+    dest.source = null;
+  }
+  else {
+    dest.innerHTML = source.innerHTML;
+    dest.source = source;
+  }
+  dest.blur();
+}
+</script>
+
+<head>
+    <title>Leimin Tian</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Leimin Tian, Leimin Tian Edinburgh University, tianleimin, Calvin Tian, 田㶟旻, 㶟旻, 田lei旻, 田*旻, 田...旻, 田·旻">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="Homepage of Leimin Tian, a third-year Ph.D. student in Informatics at University of Edinburgh, a future robopsychologist.">
+</head>
+
+<body>
+
+<img src="me.JPG" alt="LeiminTian" style="width:275px;height:250px;">
+
+<table cellpadding="20" style="font-size: 17px">
+<tr>
+<td> 
+<h1> Leimin Tian (田㶟旻) <span style="font-family:STFangsong; font-size:20pt"> </span></h1>
+<!-- <font size="+1"><b>Ph.D. Candidate</b> in <b>School of Informatics</b>, <b>University of Edinburgh</b> --> <br> <br>
+
+<table>
+<tr>
+	<td><b>E-mail</b>:</td><td id='trick'></td>
+<tr>
+
+<tr>
+	<td valign="top"><b>Address</b>: &nbsp;</td>
+	<td>
+		IF 3.25, School of Informatics <br>
+		University of Edinburgh <br>
+		10 Crichton Street <br>
+		Edinburgh EH8 9AB, UK <br>
+	</td>
+</tr>
+</table>
+ 
+</td>
+</tr>
+</table>
+
+<p>
+I am a Robopsychologist under training. <br>Currently I am a Ph.D. candidate in <a href="http://www.ilcc.inf.ed.ac.uk/">Institute of Language, Cognition and Computation</a>, <a href = "http://www.ed.ac.uk/schools-departments/informatics/"> School of Informatics</a>, <a href = "http://www.ed.ac.uk/home"> The University of Edinburgh</a>. <br>I am supervised by <a href = "http://homepages.inf.ed.ac.uk/jmoore/">Prof. Johanna D. Moore</a> and <a href = "http://homepages.inf.ed.ac.uk/clai/">Dr. Catherine Lai</a>. <br> Click <a href="myCV.pdf" download="LeiminTian_CV.pdf">here</a> to download my full CV. 
+</p>
+
+<hr>
+
+<h2> Research Interests </h2>
+Affective Computing, Multimodal Emotion Recognition, Human-Computer/Robot Interaction, Dialogue System
+<hr>
+
+<h2> Education </h2>
+<table>
+<tr>
+	<td>PhD candidate, Institute of Language, Cognition and Computation
+(ILCC), School of Informatics, University of Edinburgh, UK</td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep 2013 -- Present</td>
+</tr>
+
+<tr>
+	<td>Master in Artificial Intelligence (with Distinction), School of Informatics, University of Edinburgh, UK</td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep 2012 -- Sep 2013</td>
+</tr>
+
+<tr>
+	<td>Bachelor in Intelligent Science and Technology, School of Computer Science, Beijing University of Posts and Telecommunications, China</td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep 2008 -- Sep 2012</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h2> Publications </h2>
+<ul>
+<li> <b><a href = "http://www.research.ed.ac.uk/portal/files/44423844/ACII2017_CameraReady_1.pdf"> Recognizing Induced Emotions of Movie Audiences: Are Induced and Perceived Emotions the Same?</a> 2017 <br>Best Paper Nominee.</b><br> Leimin Tian, Michal Muszynski, Catherine Lai, Johanna D. Moore, Theodoros Kostoulas, Patrizia Lombardo, Thierry Pun, Guillaume Chanel. <br>2017 International Conference on Affective Computing and Intelligent Interaction (ACII). </li>
+</ul>
+<ul>
+<li> <b><a href = "http://ieeexplore.ieee.org/document/7846319/"> Recognizing Emotions in Spoken Dialogue with Hierarchically
+Fused Acoustic and Lexical Features</a>. 2016.</b><br> Leimin Tian, Johanna Moore, Catherine Lai. <br>Spoken Language Technology Workshop (SLT) 2016. </li>
+</ul>
+<ul>
+    <li> <b><a href = "http://ieeexplore.ieee.org/document/7344645/"> Emotion Recognition in Spontaneous and Acted Dialogues</a>. 2015.</b><br> Leimin Tian, Johanna Moore, Catherine Lai. <br>In 2015 International Conference on Affective Computing and Intelligent Interaction (ACII), pp. 698-704. IEEE. </li>
+</ul>
+<ul>
+    <li> <b><a href = "http://ieeexplore.ieee.org/document/7344651/"> Recognizing emotions in dialogues with acoustic and lexical features</a>. 2015.<br>Awarded the Fiorella De Rosis Award for the best Doctoral Consortium paper. </b><br> Leimin Tian, Johanna Moore, Catherine Lai. <br>In 2015 International Conference on Affective Computing and Intelligent Interaction (ACII), pp. 737-742. IEEE. </li>
+</ul>
+<ul>
+    <li> <b><a href = "https://laughterworkshop2015.files.wordpress.com/2014/11/tian_recognizing_emotions_in_dialogues_with_disfluencies_and_non-verbal_vocalisations.pdf"> Recognizing Emotions in Dialogues with Disfluencies and
+Non-Verbal Vocalisations</a>. 2015.</b><br> Leimin Tian, Johanna Moore, Catherine Lai. <br>In Proceedings of the 4th Interdisciplinary Workshop on Laughter and Other Nonverbal Vocalisations in Speech, pp. 39-41.  </li>
+</ul>
+<ul>
+    <li> <b><a href = "https://link.springer.com/chapter/10.1007/978-3-642-54903-8_2"> Word-level emotion recognition using high-level features</a>. 2014.</b><br> Johanna Moore, Leimin Tian, Catherine Lai. <br>In Computational Linguistics and Intelligent Text Processing, pages 17-31. Springer. </li>
+</ul>
+
+<hr>
+
+<h2> Teaching Experience </h2>
+<table>
+<tr>
+	<td>Co-supervisor of MSc dissertations, The University of Edinburgh </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; June 2016/7–Aug. 2016/7</td>
+</tr>
+<tr>
+	<td>Marker for Advanced Natural Language Processing, The University of Edinburgh </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep. 2013–Dec. 2013</td>
+</tr>
+</table>
+
+<hr>
+
+<h2> Research and Work Experience </h2>
+<table>
+<tr>
+	<td>Consultant at <a href = "https://www.heyolly.com/"> EmoTech Ltd.</a> (AI of Emotion Project) </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep. 2016–Dec. 2016</td>
+</tr>
+</table>
+
+<hr>
+
+<h2> Invited Presentations </h2>
+<ul>
+    <li> <b><a href = "https://www.eventbrite.co.uk/e/meet-ai-series-6-tickets-39512362540#"> Affective Computing: What We Do and Do Not Know</a>. 22nd Nov., 2017.</b><br> Emotech Ltd & Cocoon Networks, London, UK.  </li>
+</ul>
+<ul>
+    <li> <b><a href = "http://amoni-bath.tumblr.com/post/79443743996/leimin-tian-university-of-edinburgh"> Word-Level Emotion Recognition in Spontaneous Dialogues with High-Level Features</a>. 13th Mar., 2014.</b><br> University of Bath, Department of Computer Science, UK.  </li>
+</ul>
+
+<hr>
+
+<h2> Other Service </h2>
+<table>
+<tr>
+	<td>Committee member of the <a href = "http://edinburghbsa.weebly.com/">British Science Association (Edinburgh Branch)</a> </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep 2012 -- Present</td>
+</tr>
+<tr>
+	<td>Girls in Tech project: &nbsp; the <a href = "https://youtu.be/6Cd_BquE95Q">movie</a>, and Leimin's Story in <a href = "https://youtu.be/dMMtaeqWGlg">English</a> and in <a href = "https://youtu.be/G0cfdK36wTE">Mandarin</a></td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 8th March 2017</td>
+</tr>
+</table>
+
+<hr>
+Last updated: 23/11/2017
+
+</body>
+</html>
+
