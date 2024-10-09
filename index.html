@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+body {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 50px;
+  margin-right: 50px;
+  background-color: #f0ece2;
+}
+a {text-decoration : none; color : #69779b;}
+a:hover {text-decoration:underline; color: #acdbdf; }
+</style>
+
+<script type='text/javascript'>
+window.onload = function() {
+	document.getElementById('trick').innerHTML = decode('111-203-214-103-64-224-105-44-101-111-166-100-100-202-223-225-223-44-166-64-212-223-64-201');
+}
+function random(s, N) {
+    var x = Math.sin(s) * 10000;
+    var r = x - Math.floor(x);
+	return Math.floor(r * N);
+}
+function swap(arr, i, j) {
+	if(i == j) return;
+	arr[i] ^= arr[j];
+	arr[j] ^= arr[i];
+	arr[i] ^= arr[j];
+}
+function getRndArr(N, seed) {
+	var arr = new Array(N);
+	var i, s;
+	for(i = 0; i < N; i ++)
+		arr[i] = i;
+	for(s = seed, i = 0; i < N-1; i ++, s += 3)
+	{
+		L = N - i;
+		ind = random(s, L);
+		swap(arr, ind, L - 1);
+	}
+	return arr;
+}
+function trans(text) {
+	arr = getRndArr(text.length, 7);
+	var outtxt = '';
+	for(var i = 0; i < text.length; i ++)
+		outtxt += text[arr[i]];
+	return outtxt;
+}
+function transback(text) {
+	arr = getRndArr(text.length, 7)
+	var out = new Array(text.length);
+	for(var i = 0; i < text.length; i ++)
+		out[arr[i]] = text[i];
+	return out.join('');
+}
+function num2strbase(num, base) {
+	if(num == 0) return '0';
+	var digits = new Array();
+	for( ; num > 0; num = parseInt(num / base))
+		digits.push(num % base);
+	digits.reverse();
+	return digits.join('');
+}
+function str2numbase(str, base) {
+	var sum = 0;
+	for(var i = 0; i < str.length; i ++)
+		sum = sum * base + (str[i].charCodeAt() - '0'.charCodeAt());
+	return sum;
+}
+function alpha2code(str, base) {
+	var codes = new Array();
+	for(var i = 0; i < str.length; i ++)
+		codes.push(num2strbase(str[i].charCodeAt(), base));
+	return codes.join('-');
+}
+function code2alpha(code, base) {
+	var codes = code.split('-');
+	str = '';
+	for(var i = 0; i < codes.length; i ++)
+		str += String.fromCharCode(str2numbase(codes[i], base));
+	return str;
+}
+function decode(code) {
+	alpha = code2alpha(code, 7);
+	return transback(alpha);
+}
+function encode(str) {
+	tmp = trans(str);
+	return alpha2code(tmp, 7);
+}
+function copy(dest, source) {
+  if(dest.source == source) {
+    dest.innerHTML = "";
+    dest.source = null;
+  }
+  else {
+    dest.innerHTML = source.innerHTML;
+    dest.source = source;
+  }
+  dest.blur();
+}
+</script>
+
+<head>
+    <title>Dr. Leimin Tian &#129302</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="keywords" content="Leimin Tian, Leimin Tian CSIRO, Leimin Tian Edinburgh, Leimin Tian Monash, tianleimin, Calvin Tian, Calvin Leimin Tian, Dr. Leimin Tian, 田㶟旻, 㶟旻, 田lei旻, 田LEI旻, 田*旻, 田...旻, 田·旻, 田?旻">
+    <meta name="robots" content="index,follow">
+    <meta name="description" content="Homepage of Leimin Tian, a growing robopsychologist.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv='cache-control' content='no-cache'> 
+    <meta http-equiv='expires' content='0'> 
+    <meta http-equiv='pragma' content='no-cache'>
+</head>
+
+<body>
+
+<p><img src="me.JPG" alt="LeiminTian" style="padding:10px;width:250px;height:250px;float:left;"></p>
+<p style="margin-top: 20px;"> </p>
+	
+<h1> Leimin Tian (田㶟旻) <span style="font-family:STFangsong; font-size: 90%;"> </span></h1>
+
+<table style="font-size: 17px;"> 
+	<!-- <h1> Leimin Tian (田㶟旻) <span style="font-family:STFangsong; font-size: 90%;"> </span></h1>
+	<font size="+1"><b>PhD</b>, <b>School of Informatics</b>, <b>University of Edinburgh</b> <br> <br> -->
+<tr>
+	<td valign="top"><b>Emails</b>: &nbsp;</td>
+	<td>
+		Leimin[dot]Tian[at]data61.csiro.au
+	<br>
+		Leimin[dot]Tian[at]monash.edu
+	</td>
+
+<tr>
+	<td valign="top"><b>Address</b>: &nbsp;</td>
+	<td>
+		Robotics, CSIRO <br>
+		Robotics, Monash University <br>
+		Melbourne, Australia <br>
+	</td>
+		
+<tr>
+	<td valign="top"><b>Other links</b>: &nbsp;</td>
+	<td>
+		<a  target="_blank" href = "https://scholar.google.com.au/citations?hl=en&user=d-PQpWgAAAAJ&view_op=list_works&sortby=pubdate">Google Scholar</a> <br>
+		<a  target="_blank" href = "https://www.researchgate.net/profile/Leimin_Tian">Research Gate</a> <br>
+		<a  target="_blank" href = "https://github.com/tianleimin">GitHub Repo</a> <br>
+		<div itemscope itemtype="https://schema.org/Person"><a  target="_blank" itemprop="sameAs" content="https://orcid.org/0000-0001-8559-5610" href="https://orcid.org/0000-0001-8559-5610" target="orcid.widget" rel="noopener noreferrer" style="vertical-align:top;"><img src="https://orcid.org/sites/default/files/images/orcid_16x16.png" style="width:1em;margin-right:.5em;" alt="ORCID iD icon">orcid.org/0000-0001-8559-5610</a> <br>
+		<a  target="_blank" href="https://twitter.com/LeiminTian?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @LeiminTian</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </div>
+	</td>
+</tr>
+		
+</table>
+
+<hr>
+
+<p>
+I am a senior scientist who leads the human-robot interaction team at the <a  target="_blank" href = "https://research.csiro.au/robotics/">robotics group of CSIRO's Data61</a>. <br> 
+I am also an adjunct senior lecturer at the <a  target="_blank" href = "https://www.monash.edu/engineering/robotics/research-topics/human-robot-interaction">robotics lab</a> of <a  target="_blank" href = "https://www.monash.edu">Monash University</a>. <br> 
+Click <a  target="_blank" href="LeiminTian_CV.pdf" download="LeiminTian_CV.pdf">here</a> to download my CV. 
+</p>
+
+<hr>
+
+<h2> Research Interests </h2>
+<p>
+My research spans over human-robot interaction, human-centred AI, and affective computing. <br> 
+My work focuses on adopting interdisciplinary knowledge to develop robots that incorporate social-emotional intelligence in their perception, decision, and actions, thus enhancing their communication and collaboration with people in various applications.
+</p>
+<hr>
+
+<h2> Education </h2>
+<table>
+<tr>
+	<td>PhD in Informatics, Institute of Language, Cognition and Computation
+(ILCC), School of Informatics, University of Edinburgh, UK</td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep 2013 -- Mar 2018</td>
+</tr>
+
+<tr>
+	<td>Master in Artificial Intelligence (with Distinction), School of Informatics, University of Edinburgh, UK</td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep 2012 -- Sep 2013</td>
+</tr>
+
+<tr>
+	<td>Bachelor in Intelligent Science and Technology, School of Computer Science, Beijing University of Posts and Telecommunications, China</td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep 2008 -- Sep 2012</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h2> Selected Publications </h2>
+<ul>
+    <li> <b><a  target="_blank" href = "https://dl.acm.org/doi/abs/10.1145/3568162.3576998"> Crafting with a Robot Assistant: Use Social Cues to Inform Adaptive Handovers in Human-Robot Collaboration.</a> 2023.</b><br> Leimin Tian, Kerry He, Shiyu Xu, Akansel Cosgun, and Dana Kulić. <br>HRI 2023. </li>
+</ul>
+<ul>
+    <li> <b><a  target="_blank" href = "https://dl.acm.org/doi/book/10.1145/3502398"> Applied Affective Computing.</a> 2022.</b><br> Leimin Tian, Sharon Oviatt, Michal Muszynski, Brent C. Chamberlain, Jennifer Healey, and Akane Sano. <br>ACM Books. </li>
+</ul>
+<ul>
+    <li> <b><a  target="_blank" href = "https://dl.acm.org/doi/fullHtml/10.1145/3439720"> A Taxonomy of Social Errors in Human-Robot Interaction.</a> 2021.</b><br> Leimin Tian, Sharon Oviatt. <br>THRI 2021. </li>
+</ul>
+<ul>
+    <li> <b><a  target="_blank" href = "https://dl.acm.org/doi/abs/10.1145/3411763.3443440"> 
+Redesigning human-robot interaction in response to robot failures: A participatory design methodology.</a> 2021.</b><br> Leimin Tian, Pamela Carreno-Medrano, Aimee Allen, Shanti Sumartojo, Michael Mintrom, Enrique Coronado Zuniga, Gentiane Venture, Elizabeth Croft, Dana Kulić. <br>CHI Case Study 2021. </li>
+</ul>
+<ul>
+    <li> <b><a  target="_blank" href = "https://ieeexplore.ieee.org/document/8653953"> Recognizing Induced Emotions of Movie Audiences From Multimodal Information.</a> 2019.</b><br> Michal Muszynski, Leimin Tian, Catherine Lai, Johanna D. Moore, Theodoros Kostoulas, Patrizia Lombardo, Thierry Pun, Guillaume Chanel. <br>IEEE Transactions on Affective Computing. </li>
+</ul>
+
+<!--
+<hr>
+
+<h2> Teaching and Supervision </h2>
+<table>
+<tr>
+	<td>Co-instructor of unit ECE4078 (Intelligent Robotics), Monash University </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Jul. 2020/21 -- Dec. 2020/21/23</td>
+</tr>
+
+<tr>
+	<td>Co-supervisor of PhD student Shujie Zhou, Monash University </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Nov. 2020 -- Present</td>
+</tr>
+
+<tr>
+	<td>Co-supervisor of <a  target="_blank" href = "https://supervisorconnect.it.monash.edu/supervisors/leimin-tian">PhD, Minor thesis, Honours projects</a>, and <a  target="_blank" href = "https://fyp.eng.monash.edu/supervisor/509">FYPs</a>, Monash University </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Mar. 2019 -- Present</td>
+</tr>
+<tr>
+	<td>Co-supervisor of MSc dissertations, The University of Edinburgh </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; June 2016/7 -- Aug. 2016/7</td>
+</tr>
+</table>
+-->
+
+<hr>
+
+<!--
+<h2> Research and Work Experience </h2>
+<table>
+<tr>
+	<td>Consultant at <a  target="_blank" href = "https://www.heyolly.com/"> EmoTech Ltd.</a> (AI of Emotion Project) </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep. 2016–Dec. 2016</td>
+</tr>
+</table>
+
+<hr>
+
+<h2> Invited Presentations </h2>
+<ul>
+    <li> <b><a  target="_blank" href = "https://www.eventbrite.co.uk/e/meet-ai-series-6-tickets-39512362540#"> Affective Computing: What We Do and Do Not Know</a>. 22nd Nov., 2017.</b><br> Emotech Ltd & Cocoon Networks, London, UK.  </li>
+</ul>
+<ul>
+    <li> <b><a  target="_blank" href = "http://amoni-bath.tumblr.com/post/79443743996/leimin-tian-university-of-edinburgh"> Word-Level Emotion Recognition in Spontaneous Dialogues with High-Level Features</a>. 13th Mar., 2014.</b><br> University of Bath, Department of Computer Science, UK.  </li>
+</ul>
+
+<hr>
+-->
+
+<!--
+<h2> Other Service </h2>
+<table>
+<tr>
+	<td>Junior Executive Committee member of the <a  target="_blank" href = "https://aaac.world/">Association for the Advancement of Affective Computing (AAAC)</a> </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Feb 2018 -- Present</td>
+</tr>
+<tr>
+	<td>Committee member of the <a  target="_blank" href = "https://www.facebook.com/BSAEdinburgh/">British Science Association (Edinburgh Branch)</a> </td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Sep 2012 -- Jun 2018</td>
+</tr>
+</table>
+
+<hr>
+-->
+
+<!--
+<h2> Media </h2>
+<table>
+<tr>
+	<td>The <a  target="_blank" href = "https://www.monash.edu/research/better-governance-and-policy/projects-and-research/robots-in-public-space">Robots in Public Space</a> project</td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 2020 -- Present</td>
+</tr>
+<tr>
+	<td>She's Building a Robot: <a  target="_blank" href = "https://medium.com/shes-building-a-robot/leimin-tian-9843a1080cd8">interview</a></td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 15th July 2019</td>
+</tr>
+<tr>
+	<td>Girls in Tech project: the <a  target="_blank" href = "https://youtu.be/6Cd_BquE95Q">movie</a>, and Leimin's Story in <a  target="_blank" href = "https://youtu.be/dMMtaeqWGlg">English</a> and in <a  target="_blank" href = "https://youtu.be/G0cfdK36wTE">Mandarin</a></td>
+	<td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 8th March 2017</td>
+</tr>	
+</table>
+
+<hr>
+-->
+
+<h2> Miscellaneous </h2>
+<table>
+<tr><td>I am a <a  target="_blank" href = "https://en.wikipedia.org/wiki/Manchu_people">Manchurian Chinese</a> (<a  target="_blank" href = "https://en.wikipedia.org/wiki/Bordered_Yellow_Banner">Bordered Yellow Banner</a>) from Beijing, China.</td></tr>
+<tr><td>My name 田㶟旻 is pronounced as "tián lěi mín" in pinyin:</td></tr>
+	<tr><td>&nbsp; 田 (tián) is my family name. It means the field or the earth</td></tr>
+	<tr><td>&nbsp; 㶟 (lěi) is the ancient name of the <a  target="_blank" href = "https://en.wikipedia.org/wiki/Yongding_River">Yongding River</a> that flows through Beijing, where my family lives next to. It also means water.</td></tr>
+	<tr><td>&nbsp; 旻 (mín) means autumn or the sky. I was born at the start of autumn.</td></tr>
+<tr><td>
+My name can be loosely translated as "Someone from the Tian family living next to the Lei river who was born in autumn." And by including the earth (Tian), the water (Lei), and the sky (Min) in my name, I am free to explore the whole wide world &#127759
+</td></tr>
+</table>
+	
+<hr>
+
+<p>
+Last updated: 09/10/2024
+</p>
+
+
+</body>
+</html>
+
